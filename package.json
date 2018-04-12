@@ -18,7 +18,12 @@
   },
   "homepage": "https://github.com/Mjohnwright/liri-node-app#readme",
   "dependencies": {
+    "deep-extend": "^0.5.0",
     "dotenv": "^5.0.1",
+    "node-spotify-api": "^1.0.7",
+    "request": "^2.85.0",
+    "request-promise": "^4.2.2",
     "twitter": "^1.7.1"
-  }
+  },
+  "devDependencies": {}
 }
