@@ -1,4 +1,5 @@
 //rotten tomatoes ?????
+//ADD THE TWEET NUMBER WITH A FOR LOOP
 
 require("dotenv").config(); // installed using: npm install dotenv
 
@@ -44,7 +45,7 @@ function getTwitter(name) {
 
   var params = {
     screen_name: "katyperry",
-    limit: 20
+    limit: 1
   }; // theRealMWright
   client.get("statuses/user_timeline", params, function(
     error,
@@ -53,7 +54,8 @@ function getTwitter(name) {
   ) {
     if (!error) {
       for (var i = 0; i < 19; i++) {
-        console.log("Last tweets = ", tweets[i].text); //returns the text of the tweet
+        console.log("JSON object: " + JSON.stringify(tweets[i], null, 2));
+        console.log("Last tweets = ", tweets[i].text); //returns the text of the tweet ---ADD THE NUMBER IN HERE
         console.log("timestamp = ", tweets[i].created_at); //returns the tweet timestamp
         console.log("**************************************"); //returns the tweet timestamp
       }
@@ -70,7 +72,7 @@ function getSpotify(argument) {
   if (argument == null) {
     argument = "The Sign Ace Of Base";
   }
-  spotify.search({ type: "track", query: argument, limit: 10 }, function(
+  spotify.search({ type: "track", query: argument, limit: 1 }, function(
     err,
     data
   ) {
@@ -79,11 +81,11 @@ function getSpotify(argument) {
       return;
     }
       var songs = data.tracks.items[0];
-      console.log("SONGS = " + JSON.stringify(songs, null, 2));
-      console.log("1 Song Name = ", songs.name);
-      console.log("2 Artist= ", songs.artists[0].name);
-      console.log("3 Album Name = ", songs.album.name);
-      console.log("4 Preview = ", songs.preview_url);
+      // console.log("SONGS = " + JSON.stringify(data, null, 2));
+      console.log("1 ************ Song Name = ", songs.name);
+      console.log("2 ************ Artist= ", songs.artists[0].name);
+      console.log("3 ************ Album Name = ", songs.album.name);
+      console.log("4 ************ Preview = ", songs.preview_url);
   });
 }
 
@@ -91,23 +93,19 @@ function getSpotify(argument) {
 // OMBD FUNCTION < movie-this >
 function getOMBD(argument) {
   var movieName = "";
-  console.log("Argument: " +argument);
 
   if (argument === undefined) {
     movieName = "Mr. Nobody";
   }
+  
   var totalArgs = process.argv;
 
-  console.log("totalArgs = " + totalArgs);
-
   for (var i = 3; i < totalArgs.length; i++) {
-    if (i > 3 && i < totalArgs.length) {
-      argument = totalArgs + "-" + totalArgs[i];
+
+    if (i > 3 && i <= totalArgs.length) {
+      movieName = argument + "-" + totalArgs[i];
     } else {
-      movieName += argument[i];
-      console.log("!!!!argument= ", argument);
-      console.log("argument length = ", totalArgs.length);
-      console.log("movieName = ", movieName);
+      movieName += totalArgs[i];
     }
   }
 
@@ -118,13 +116,11 @@ function getOMBD(argument) {
     "&tomatoes=true&y=&plot=short&apikey=ee2df17c";
 
   // This line is just to help us debug against the actual URL.
-  console.log(queryUrl);
+  // console.log(queryUrl);
 
   request(queryUrl, function(error, response, body) {
     // If the request is successful
     if (!error && response.statusCode === 200) {
-      // Parse the body of the site and recover just the imdbRating
-      // (Note: The syntax below for parsing isn't obvious. Just spend a few moments dissecting it).
       // console.log(" JSON OBJECT: " + JSON.stringify(body, null, 2));
       console.log("Movie Title: " + JSON.parse(body).Title);
       console.log("Release Year: " + JSON.parse(body).Year);
@@ -137,6 +133,7 @@ function getOMBD(argument) {
     }
   });
 }
+// ****************************
 // do-what-it-says
 function getFS() {
   fs.readFile("random.txt", 'utf8', function(err, data) {
