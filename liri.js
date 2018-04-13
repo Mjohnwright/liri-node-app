@@ -1,5 +1,6 @@
 //rotten tomatoes ?????
 //ADD THE TWEET NUMBER WITH A FOR LOOP
+//only getting 19 tweets
 
 require("dotenv").config(); // installed using: npm install dotenv
 
@@ -45,19 +46,20 @@ function getTwitter(name) {
 
   var params = {
     screen_name: "katyperry",
-    limit: 1
-  }; // theRealMWright
+    limit: 21
+  }; // "theRealMWright"
   client.get("statuses/user_timeline", params, function(
     error,
     tweets,
     response
   ) {
     if (!error) {
-      for (var i = 0; i < 19; i++) {
-        console.log("JSON object: " + JSON.stringify(tweets[i], null, 2));
+      for (var i = 0; i <= 19; i++) {
+        // console.log("JSON object: " + JSON.stringify(tweets[i], null, 2));
+        console.log(i);
         console.log("Last tweets = ", tweets[i].text); //returns the text of the tweet ---ADD THE NUMBER IN HERE
         console.log("timestamp = ", tweets[i].created_at); //returns the tweet timestamp
-        console.log("**************************************"); //returns the tweet timestamp
+        console.log("******************************************************"); //returns the tweet timestamp
       }
     }
   });
@@ -67,7 +69,7 @@ function getTwitter(name) {
 // SPOTIFY FUNTION - < spotify-my-song >
 var songName;
 function getSpotify(argument) {
-  console.log("ARGUMENTS IN SPOTIFY: " + argument );
+  console.log("ARGUMENTS IN SPOTIFY: " + argument);
 
   if (argument == null) {
     argument = "The Sign Ace Of Base";
@@ -80,12 +82,12 @@ function getSpotify(argument) {
       console.log("Error: " + err);
       return;
     }
-      var songs = data.tracks.items[0];
-      // console.log("SONGS = " + JSON.stringify(data, null, 2));
-      console.log("1 ************ Song Name = ", songs.name);
-      console.log("2 ************ Artist= ", songs.artists[0].name);
-      console.log("3 ************ Album Name = ", songs.album.name);
-      console.log("4 ************ Preview = ", songs.preview_url);
+    var songs = data.tracks.items[0];
+    // console.log("SONGS = " + JSON.stringify(data, null, 2));
+    console.log("1 ************ Song Name = ", songs.name);
+    console.log("2 ************ Artist= ", songs.artists[0].name);
+    console.log("3 ************ Album Name = ", songs.album.name);
+    console.log("4 ************ Preview = ", songs.preview_url);
   });
 }
 
@@ -97,11 +99,10 @@ function getOMBD(argument) {
   if (argument === undefined) {
     movieName = "Mr. Nobody";
   }
-  
+
   var totalArgs = process.argv;
 
   for (var i = 3; i < totalArgs.length; i++) {
-
     if (i > 3 && i <= totalArgs.length) {
       movieName = argument + "-" + totalArgs[i];
     } else {
@@ -133,17 +134,18 @@ function getOMBD(argument) {
     }
   });
 }
+
 // ****************************
-// do-what-it-says
+// FUNCTION   do-what-it-says
 function getFS() {
-  fs.readFile("random.txt", 'utf8', function(err, data) {
+  fs.readFile("random.txt", "utf8", function(err, data) {
     if (err) throw err;
     console.log(data);
 
     var firstString = data.split(",");
     console.log(firstString);
     argument = firstString[1];
-    console.log("this is the new argument = " + argument );
+    console.log("this is the new argument = " + argument);
     getSpotify(argument);
   });
 }
