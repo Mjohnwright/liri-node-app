@@ -82,7 +82,9 @@ function getSpotify(argument) {
       console.log("Error: " + err);
       return;
     }
+    
     var songs = data.tracks.items[0];
+
     // console.log("SONGS = " + JSON.stringify(data, null, 2));
     console.log("1 ************ Song Name = ", songs.name);
     console.log("2 ************ Artist= ", songs.artists[0].name);
