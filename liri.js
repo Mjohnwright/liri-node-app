@@ -82,7 +82,7 @@ function getSpotify(argument) {
       console.log("Error: " + err);
       return;
     }
-    
+
     var songs = data.tracks.items[0];
 
     // console.log("SONGS = " + JSON.stringify(data, null, 2));
@@ -120,7 +120,7 @@ function getOMBD(argument) {
 
   // This line is just to help us debug against the actual URL.
   // console.log(queryUrl);
- var rottentomatoes;
+  var rottentomatoes;
   request(queryUrl, function(error, response, body) {
     // If the request is successful
     if (!error && response.statusCode === 200) {
@@ -152,5 +152,5 @@ function getFS() {
   });
 }
 
-//THIS IS FUNCTION where it all starts
+//THIS IS FUNCTION the launches the entire app
 execute(command);
