@@ -120,7 +120,7 @@ function getOMBD(argument) {
 
   // This line is just to help us debug against the actual URL.
   // console.log(queryUrl);
-
+ var rottentomatoes;
   request(queryUrl, function(error, response, body) {
     // If the request is successful
     if (!error && response.statusCode === 200) {
@@ -128,7 +128,7 @@ function getOMBD(argument) {
       console.log("Movie Title: " + JSON.parse(body).Title);
       console.log("Release Year: " + JSON.parse(body).Year);
       console.log("IMDB Rating: " + JSON.parse(body).imdbRating);
-      console.log("Rotten Tomatoes Rating: " + JSON.parse(body).tomatoRating);
+      console.log("Rotten Tomatoes Rating: " + JSON.parse(body).tomatoRating); ////change this up
       console.log("Country Produced In: " + JSON.parse(body).Country);
       console.log("Language of Movie: " + JSON.parse(body).Language);
       console.log("Movie Plot: " + JSON.parse(body).Plot);
