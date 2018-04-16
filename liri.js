@@ -45,7 +45,7 @@ function getTwitter(name) {
   console.log("function getTwitter launched");
 
   var params = {
-    screen_name: "katyperry",
+    screen_name: "theRealMwright",
     limit: 21
   }; // "theRealMWright"
   client.get("statuses/user_timeline", params, function(
