@@ -9,6 +9,6 @@ Here is a list of the 4 actions liri-node-app can do:
   3. "node liri.js movie-this <movie name>" : will return information about that movie
   4. "node liri.js do-what-it-says" : will return a secret that is hidden in text file suing the fs.node package.
   
-  This app uses node.js, JavaScript, 3 API calls (twitter, spotify and OMBD).  It also emplys a .env file to securely keep my API credentials hidden so they will not appear of GitHub.
+  This app uses node.js, JavaScript, 3 API calls (twitter, spotify and OMBD).  It also employs a '.env' file to securely keep my API credentials hidden so they will not appear of GitHub.
   
   
